@@ -1,6 +1,4 @@
 ﻿from shapes import RectShape, LineShape
-from PyQt6.QtCore import Qt
-from shape_factory import make_shape
 
 class CubeFrame(RectShape, LineShape):
     def draw(self, painter, filled=True):
@@ -10,17 +8,16 @@ class CubeFrame(RectShape, LineShape):
         w = abs(x2 - x1)
         h = abs(y2 - y1)
 
-        dx = w * 0.3
-        dy = h * 0.3
+        dx = int(w * 0.3)
+        dy = int(h * 0.3)
 
-        RectShape.draw(self, painter)
+        original_coords = (self.x1, self.y1, self.x2, self.y2)
+        self.x1, self.y1 = x1 + dx, y1 + dy
+        self.x2, self.y2 = x2 + dx, y2 + dy
 
-        rear = make_shape("rect")
-        rear.x1 = x1 + dx
-        rear.y1 = y1 + dy
-        rear.x2 = x2 + dx
-        rear.y2 = y2 + dy
-        rear.draw(painter)
+        super().draw(painter, filled=False)
+
+        self.x1, self.y1, self.x2, self.y2 = original_coords
 
         pairs = [
             (x1, y1, x1 + dx, y1 + dy),
@@ -30,7 +27,9 @@ class CubeFrame(RectShape, LineShape):
         ]
 
         for sx, sy, ex, ey in pairs:
-            line = make_shape("line")
-            line.x1, line.y1 = sx, sy
-            line.x2, line.y2 = ex, ey
-            line.draw(painter)
+            original_line_coords = (self.x1, self.y1, self.x2, self.y2)
+            self.x1, self.y1, self.x2, self.y2 = sx, sy, ex, ey
+            LineShape.draw(self, painter, filled)
+            self.x1, self.y1, self.x2, self.y2 = original_line_coords
+
+        super().draw(painter, filled=False)

@@ -1,19 +1,22 @@
-﻿from shapes.point import PointShape
-from shapes.line import LineShape
-from shapes.rect import RectShape
-from shapes.ellipse import EllipseShape
-from shapes.line_with_circles import LineWithCircles
-from shapes.cube_frame import CubeFrame
+﻿import importlib
 
 SHAPE_CLASSES = {
-    "point": PointShape,
-    "line": LineShape,
-    "rect": RectShape,
-    "ellipse": EllipseShape,
-    "linecirc": LineWithCircles,
-    "cube": CubeFrame,
+    "point": "shapes.point.PointShape",
+    "line": "shapes.line.LineShape",
+    "rect": "shapes.rect.RectShape",
+    "ellipse": "shapes.ellipse.EllipseShape",
+    "linecirc": "shapes.line_with_circles.LineWithCircles",
+    "cube": "shapes.cube.CubeFrame",
 }
 
 def make_shape(shape_type: str):
-    cls = SHAPE_CLASSES.get(shape_type)
-    return cls() if cls else None
+    path = SHAPE_CLASSES.get(shape_type)
+    if not path:
+        return None
+
+    module_name, class_name = path.rsplit(".", 1)
+
+    module = importlib.import_module(module_name)
+    cls = getattr(module, class_name)
+
+    return cls()

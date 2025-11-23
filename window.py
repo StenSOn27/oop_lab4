@@ -27,6 +27,8 @@ class MainWindow(QMainWindow):
         self.add_button("line", "icons/line", "Створити лінію")
         self.add_button("rect", "icons/rectangle", "Створити прямокутник")
         self.add_button("ellipse", "icons/ellipse", "Створити еліпс")
+        self.add_button("cube", "icons/cube", "Створити куб")
+        self.add_button("linecirc", "icons/line_with_circles", "Створити лінію з кругами")
 
     def add_button(self, name: str, icon_file: str, tip: str):
         act = QAction(QIcon(f"{icon_file}.png"), "", self)

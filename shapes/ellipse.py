@@ -10,9 +10,6 @@ class EllipseShape(Shape):
         ry = abs(ey - cy)
 
         painter.setPen(Qt.GlobalColor.black)
-        if filled:
-            painter.setBrush(Qt.BrushStyle.NoBrush)
-        else:
-            painter.setBrush(Qt.BrushStyle.NoBrush)
+        painter.setBrush(Qt.BrushStyle.NoBrush)
 
         painter.drawEllipse(cx - rx, cy - ry, rx * 2, ry * 2)

@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt
 from shapes import LineShape, EllipseShape
 
 
-class LineWithCircles(LineShape, EllipseShape):
+class LineOOShape(LineShape, EllipseShape):
     def draw(self, painter, filled=True):
         LineShape.draw(self, painter, filled)
         r = 6

@@ -5,7 +5,7 @@ SHAPE_CLASSES = {
     "line": "shapes.line.LineShape",
     "rect": "shapes.rect.RectShape",
     "ellipse": "shapes.ellipse.EllipseShape",
-    "linecirc": "shapes.line_with_circles.LineWithCircles",
+    "linecirc": "shapes.line_with_circles.LineOOShape",
     "cube": "shapes.cube.CubeFrame",
 }
 

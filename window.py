@@ -8,7 +8,6 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Lab 3")
         self.setFixedSize(1000, 800)
-
         self.canvas = Canvas(self)
         self.setCentralWidget(self.canvas)
 

@@ -1,4 +1,5 @@
 ﻿from shapes import RectShape, LineShape
+from PyQt6.QtCore import Qt
 
 class CubeFrame(RectShape, LineShape):
     def draw(self, painter, filled=True):
@@ -14,7 +15,7 @@ class CubeFrame(RectShape, LineShape):
         original_coords = (self.x1, self.y1, self.x2, self.y2)
         self.x1, self.y1 = x1 + dx, y1 + dy
         self.x2, self.y2 = x2 + dx, y2 + dy
-
+        painter.setPen(Qt.GlobalColor.black)
         super().draw(painter, filled=False)
 
         self.x1, self.y1, self.x2, self.y2 = original_coords

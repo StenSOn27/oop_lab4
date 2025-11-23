@@ -48,5 +48,8 @@ class Canvas(QWidget):
                 shape.draw(p, filled=True)
 
         if self.temp_shape is not None:
-            p.setPen(QPen(Qt.GlobalColor.black, 1))
+            pen = QPen(Qt.GlobalColor.black, 2)
+            pen.setStyle(Qt.PenStyle.CustomDashLine)
+            pen.setDashPattern([6, 3])  # 6 px лінія, 3 px пробіл
+            p.setPen(pen)
             self.temp_shape.draw(p, filled=False)

@@ -1,4 +1,4 @@
-﻿from PyQt6.QtGui import QPainter, QPen
+﻿from PyQt6.QtGui import QBrush, QColor
 from PyQt6.QtCore import Qt
 from .shape import Shape
 
@@ -8,8 +8,8 @@ class EllipseShape(Shape):
         ex, ey = self.x2, self.y2
         rx = abs(ex - cx)
         ry = abs(ey - cy)
-
-        painter.setPen(Qt.GlobalColor.black)
-        painter.setBrush(Qt.BrushStyle.NoBrush)
-
+        if filled:
+            painter.setBrush(QBrush(QColor("yellow")))
+        else:
+            painter.setBrush(Qt.BrushStyle.NoBrush)
         painter.drawEllipse(cx - rx, cy - ry, rx * 2, ry * 2)
